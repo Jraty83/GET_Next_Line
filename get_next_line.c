@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:00:35 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/04 16:41:26 by jraty            ###   ########.fr       */
+/*   Updated: 2020/08/04 16:50:02 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_get_line(char **s, char **line)
 
 int		get_next_line(const int fd, char **line)
 {
-	static char	*s[66];
+	static char	*s[FD];
 	char		*tmp;
 	char		buf[BUFF_SIZE + 1];
 	int			ret;
