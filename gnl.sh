@@ -1,1 +1,4 @@
-clang -Wall -Wextra -Werror /Users/jraty/getnextline/libft/libft.a /Users/jraty/getnextline/main.c get_next_line.c -I get_next_line.h -o test
+make -C libft/ fclean && make -C libft/
+clang -Wall -Wextra -Werror -I libft/includes -o get_next_line.o -c get_next_line.c
+clang -Wall -Wextra -Werror -I libft/includes -o main.o -c /Users/jraty/getnextline/main.c
+clang -o test_gnl main.o get_next_line.o -I libft/includes -L libft/ -lft
