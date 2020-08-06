@@ -6,12 +6,12 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:00:49 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/05 14:51:34 by jraty            ###   ########.fr       */
+/*   Updated: 2020/08/06 15:27:30 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "/Users/jraty/testmygnl/get_next_line.h"
+#include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -21,7 +21,7 @@ int		main(int argc, char **argv)
 {	
 	int		fd, fd2, fd3;
 	char	*line;
-	int		n = 0;
+	int		n = 0, loops = 0;
 	static int i = 0;
 
 	if (argc == 2 && ft_strcmp(argv[1], "stdin") == 0)
@@ -59,33 +59,45 @@ int		main(int argc, char **argv)
 			write(2, "error opening file\n", 19);
 			return (0);
 		}
-		while (get_next_line(fd, &line) == 1 && n < 3)
+		while (loops < 5)
 		{
-			printf("--------------------------------------------------------------\n");
-			printf("\033[32mfd[%d] |%s|\033[0m\n", fd, line);
-			free(line);
-			i++;
-			n++;
-		}
-		free(line);
-		n = 0;
-		while (get_next_line(fd2, &line) == 1 && n < 3)
-		{
-			printf("--------------------------------------------------------------\n");
-			printf("\033[32mfd[%d] |%s|\033[0m\n", fd2, line);
-			free(line);
-			i++;
-			n++;
-		}
-		free(line);
-		n = 0;
-		while (get_next_line(fd3, &line) == 1 && n < 3)
-		{
-			printf("--------------------------------------------------------------\n");
-			printf("\033[32mfd[%d] |%s|\033[0m\n", fd3, line);
-			free(line);
-			i++;
-			n++;
+			n = 0;
+			while (n < 2)
+			{
+				if (get_next_line(fd, &line) == 1)
+				{
+					printf("--------------------------------------------------------------\n");
+					printf("\033[32mfd[%d] |%s|\033[0m\n", fd, line);
+				}
+				free(line);
+				i++;
+				n++;
+			}
+			n = 0;
+			while (n < 2)
+			{
+				if (get_next_line(fd2, &line) == 1)
+				{
+					printf("--------------------------------------------------------------\n");
+					printf("\033[32mfd[%d] |%s|\033[0m\n", fd2, line);
+				}
+				free(line);
+				i++;
+				n++;
+			}
+			n = 0;
+			while (n < 2)
+			{
+				if (get_next_line(fd3, &line) == 1)
+				{
+					printf("--------------------------------------------------------------\n");
+					printf("\033[32mfd[%d] |%s|\033[0m\n", fd3, line);
+				}
+				free(line);
+				i++;
+				n++;
+			}
+			loops++;
 		}
 		close(fd);
 		if (fd == -1)
