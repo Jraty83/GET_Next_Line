@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:00:35 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/06 14:34:11 by jraty            ###   ########.fr       */
+/*   Updated: 2020/08/06 21:48:49 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,5 @@ int			get_next_line(const int fd, char **line)
 	}
 	if (ret == -1)
 		return (-1);
-	else if (s[fd] == NULL)
-		return (0);
-	else
-		return (ft_get_line(&s[fd], line));
+	return (s[fd] == NULL ? 0 : ft_get_line(&s[fd], line));
 }
