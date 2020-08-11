@@ -6,12 +6,11 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:00:35 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/11 23:01:19 by jraty            ###   ########.fr       */
+/*   Updated: 2020/08/11 23:44:07 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 static int	ft_get_line(char **s, char **line)
 {
@@ -41,7 +40,6 @@ int			get_next_line(const int fd, char **line)
 	char		buf[BUFF_SIZE + 1];
 	int			ret;
 
-	printf("fd in GNL is: (%d)\n", fd);
 	if (fd < 0 || line == NULL)
 		return (-1);
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
@@ -55,9 +53,7 @@ int			get_next_line(const int fd, char **line)
 		if (ft_strchr(s[fd], '\n') != NULL)
 			break ;
 	}
-	printf("ret in GNL is: (%d)\n", ret);
 	if (ret == -1)
 		return (-1);
-	else
-		return (s[fd] == NULL ? 0 : ft_get_line(&s[fd], line));
+	return (s[fd] == NULL ? 0 : ft_get_line(&s[fd], line));
 }
