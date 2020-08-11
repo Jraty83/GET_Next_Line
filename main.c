@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:00:49 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/06 15:27:30 by jraty            ###   ########.fr       */
+/*   Updated: 2020/08/11 23:16:59 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int		main(int argc, char **argv)
 	char	*line;
 	int		n = 0, loops = 0;
 	static int i = 0;
+	int		x;
 
 	if (argc == 2 && ft_strcmp(argv[1], "stdin") == 0)
 	{
 		fd = 0;
-		while (get_next_line(fd, &line) == 1)
+		while ((x = get_next_line(fd, &line)) == 1)
 		{
 			printf("--------------------------------------------------------------\n");
 			printf("\033[32mfd[%d] |%s|\033[0m\n", fd, line);
@@ -38,7 +39,7 @@ int		main(int argc, char **argv)
 	else if (argc == 2 && ft_strcmp(argv[1], "stdin") != 0)
 	{
 		fd = open(argv[1], O_RDONLY);
-		while (get_next_line(fd, &line) == 1)
+		while ((x = get_next_line(42, &line)) == 1)
 		{
 			printf("--------------------------------------------------------------\n");
 			printf("\033[32mfd[%d] |%s|\033[0m\n", fd, line);
@@ -64,7 +65,7 @@ int		main(int argc, char **argv)
 			n = 0;
 			while (n < 2)
 			{
-				if (get_next_line(fd, &line) == 1)
+				if ((x = get_next_line(fd, &line)) == 1)
 				{
 					printf("--------------------------------------------------------------\n");
 					printf("\033[32mfd[%d] |%s|\033[0m\n", fd, line);
@@ -76,7 +77,7 @@ int		main(int argc, char **argv)
 			n = 0;
 			while (n < 2)
 			{
-				if (get_next_line(fd2, &line) == 1)
+				if ((x = get_next_line(fd2, &line)) == 1)
 				{
 					printf("--------------------------------------------------------------\n");
 					printf("\033[32mfd[%d] |%s|\033[0m\n", fd2, line);
@@ -88,7 +89,7 @@ int		main(int argc, char **argv)
 			n = 0;
 			while (n < 2)
 			{
-				if (get_next_line(fd3, &line) == 1)
+				if ((x = get_next_line(fd3, &line)) == 1)
 				{
 					printf("--------------------------------------------------------------\n");
 					printf("\033[32mfd[%d] |%s|\033[0m\n", fd3, line);
@@ -115,7 +116,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	printf("\033[01;36mPROGRAM FINISHED with BUFF_SIZE %d\033[0m\n", BUFF_SIZE);
-	printf("\033[36m> > > > > > > > > > > > free(line) done (%d) times!\033[0m\n", i);
+	printf("\033[36m> > > > > GNL returns (%d), free(line) done (%d) times!\033[0m\n", x, i);
 // TEST for LEAKS
 //	while (1) ;
 	return (0);
