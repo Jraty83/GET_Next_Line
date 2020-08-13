@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:00:49 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/11 23:16:59 by jraty            ###   ########.fr       */
+/*   Updated: 2020/08/13 16:45:59 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		main(int argc, char **argv)
 	else if (argc == 2 && ft_strcmp(argv[1], "stdin") != 0)
 	{
 		fd = open(argv[1], O_RDONLY);
-		while ((x = get_next_line(42, &line)) == 1)
+		while ((x = get_next_line(fd, &line)) == 1)
 		{
 			printf("--------------------------------------------------------------\n");
 			printf("\033[32mfd[%d] |%s|\033[0m\n", fd, line);
