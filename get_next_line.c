@@ -6,7 +6,7 @@
 /*   By: jraty <jraty@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:00:35 by jraty             #+#    #+#             */
-/*   Updated: 2020/08/11 23:21:23 by jraty            ###   ########.fr       */
+/*   Updated: 2021/05/19 14:16:58 by jraty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	ft_return_value(int ret, char **s, char **line)
 		return (ft_get_line(s, line));
 }
 
-int			get_next_line(const int fd, char **line)
+int	get_next_line(const int fd, char **line)
 {
 	static char	*s[FD];
 	char		*tmp;
@@ -60,7 +60,8 @@ int			get_next_line(const int fd, char **line)
 
 	if (fd < 0 || line == NULL)
 		return (-1);
-	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	ret = read(fd, buf, BUFF_SIZE);
+	while (ret > 0)
 	{
 		buf[ret] = '\0';
 		if (s[fd] == NULL)
@@ -70,6 +71,7 @@ int			get_next_line(const int fd, char **line)
 		s[fd] = tmp;
 		if (ft_strchr(s[fd], '\n') != NULL)
 			break ;
+		ret = read(fd, buf, BUFF_SIZE);
 	}
 	return (ft_return_value(ret, &s[fd], line));
 }
